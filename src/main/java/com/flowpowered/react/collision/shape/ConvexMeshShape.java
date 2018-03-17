@@ -37,6 +37,7 @@ import gnu.trove.set.hash.TIntHashSet;
 import com.flowpowered.react.ReactDefaults;
 import com.flowpowered.react.math.Matrix3x3;
 import com.flowpowered.react.math.Vector3;
+import org.checkerframework.checker.initialization.qual.UnderInitialization;
 
 /**
  * This class represents a convex mesh shape. In order to create a convex mesh shape, you need to indicate the local-space position of the mesh vertices. You do this either by passing a vertices array
@@ -143,7 +144,7 @@ public class ConvexMeshShape extends CollisionShape {
     }
 
     // Recomputes the bounds of the mesh.
-    private void recalculateBounds() {
+    private void recalculateBounds(@UnderInitialization ConvexMeshShape this) {
         mMinBounds.setToZero();
         mMaxBounds.setToZero();
         for (int i = 0; i < mNbVertices; i++) {
